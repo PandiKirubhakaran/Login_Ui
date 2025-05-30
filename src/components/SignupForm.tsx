@@ -3,6 +3,11 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { AuthLables } from "@/constant/enum";
 
+type User = {
+  username: string;
+  password: string;
+};
+
 export default function SignupForm() {
   const router = useRouter();
   const [username, setUsername] = useState("");
@@ -25,7 +30,7 @@ export default function SignupForm() {
 
     // Simulate signup by saving to localStorage
     const users = JSON.parse(localStorage.getItem("users") || "[]");
-    if (users.find((u: any) => u.username === username)) {
+    if (users.find((u: User) => u.username === username)) {
       setError("Username already exists");
       return;
     }

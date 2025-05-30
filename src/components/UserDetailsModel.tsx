@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Modal from "./Model";
 import { FormLables, StatusLables } from "@/constant/enum";
+import Image from "next/image";
 
 interface UserDetail {
   id: number;
@@ -43,10 +44,12 @@ export default function UserDetailsModal({ userId, onClose }: Props) {
       {error && <p className="text-red-600">{error}</p>}
       {user && (
         <div className="space-y-4">
-          <img
+          <Image
             src={user.image}
-            alt=""
-            className="w-24 h-24 rounded-full mx-auto"
+            alt="User Image"
+            width={128}
+            height={128}
+            priority={false}
           />
           <h2 className="text-xl font-bold text-center">
             {user.firstName} {user.lastName}

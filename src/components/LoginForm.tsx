@@ -4,6 +4,11 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/Authcontext";
 import { AuthLables } from "@/constant/enum";
 
+type User = {
+  username: string;
+  password: string;
+};
+
 export default function LoginForm() {
   const { login } = useAuth();
   const router = useRouter();
@@ -17,7 +22,7 @@ export default function LoginForm() {
     // Check localStorage (users signed up via your SignupForm)
     const users = JSON.parse(localStorage.getItem("users") || "[]");
     const localUser = users.find(
-      (u: any) => u.username === username && u.password === password
+      (u: User) => u.username === username && u.password === password
     );
     if (localUser) {
       // Simulate a token and enrich with default values
